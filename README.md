@@ -38,3 +38,10 @@ Root2
 Root
   ChildTwoSpaces
 ```
+
+## Todo
+
+* Relax requirement to have one-space indentation everywhere
+  * Implementation idea : infer indentation and normalize to single space before passing to `outline_to_edges`
+* Allow labeled edges
+  * Implementation idea : edges can be indicated by a colon, e.g. `is:ordered` would create an edge labeled "is" to a node labeled "ordered"
