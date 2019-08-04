@@ -1,0 +1,7 @@
+digraph {
+ Root -> Child1;
+ Root -> Child2;
+ Child1 -> SubChild11;
+ Child1 -> SubChild12;
+ Child2 -> SubChild21;
+}
