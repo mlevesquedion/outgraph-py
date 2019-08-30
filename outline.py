@@ -2,25 +2,25 @@ import collections
 import re
 
 
-def graph_to_edges(graph):
+def tree_to_edges(tree):
     """
-    graph: a dict representing a graph's adjacency lists
-    output: a list of the graph's edges as (src, dst) tuples
+    tree: a dict representing a tree's adjacency lists
+    output: a list of the tree's edges as (src, dst) tuples
     """
-    return [(node, child) for node, children in graph.items() for child
+    return [(node, child) for node, children in tree.items() for child
             in children]
 
 
 line_re = re.compile(r'^(\s*)(.*)')
 
 
-def graph_from_outline(outline_lines):
+def tree_from_outline(outline_lines):
     """
     outline_lines: a list of strings representing an outline
-    output: a graph constructed from the outline
+    output: a tree constructed from the outline
     """
     print(outline_lines)
-    graph = collections.defaultdict(list)
+    tree = collections.defaultdict(list)
     level_to_parent = {}
     for i, line in enumerate(outline_lines):
         if not line:
@@ -34,13 +34,13 @@ def graph_from_outline(outline_lines):
         if parent_indent not in level_to_parent:
             continue
         parent = level_to_parent[parent_indent]
-        graph[parent].append(content)
-    return dict(graph)
+        tree[parent].append(content)
+    return dict(tree)
 
 
 def outline_to_edges(outline_lines):
     """
-    graph: a dict representing a graph's adjacency lists
-    output: a list of the graph's edges as (src, dst) tuples
+    tree: a dict representing a tree's adjacency lists
+    output: a list of the tree's edges as (src, dst) tuples
     """
-    return graph_to_edges(graph_from_outline(outline_lines))
+    return tree_to_edges(tree_from_outline(outline_lines))

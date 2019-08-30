@@ -1,10 +1,9 @@
 from pytest import mark
 import outline
-import graphviz
 
 
 @mark.parametrize(
-    ["graph", "edges"],
+    ["tree", "edges"],
     [
         ({}, []),
         ({
@@ -19,8 +18,8 @@ import graphviz
         }, [("a", "b"), ("b", "c")]),
     ],
 )
-def test_graph_to_edges(graph, edges):
-    assert outline.graph_to_edges(graph) == edges
+def test_tree_to_edges(tree, edges):
+    assert outline.tree_to_edges(tree) == edges
 
 
 linked_list_outline = """\
@@ -29,7 +28,7 @@ a
   c
    d
     e""".splitlines()
-linked_list_graph = {"a": ["b"], "b": ["c"], "c": ["d"], "d": ["e"]}
+linked_list_tree = {"a": ["b"], "b": ["c"], "c": ["d"], "d": ["e"]}
 linked_list_edges = [("a", "b"), ("b", "c"), ("c", "d"), ("d", "e")]
 
 tree_outline = """\
@@ -40,25 +39,25 @@ tree_outline = """\
    5
  6
   7""".splitlines()
-tree_graph = {
+tree_tree = {
     "1": ["2", "6"],
     "2": ["3", "4"],
     "4": ["5"],
     "6": ["7"],
 }
-tree_edges = outline.graph_to_edges(tree_graph)
+tree_edges = outline.tree_to_edges(tree_tree)
 
 
 @mark.parametrize(
-    ["outline_lines", "graph"],
+    ["outline_lines", "tree"],
     [
         ("", {}),
-        (linked_list_outline, linked_list_graph),
-        (tree_outline, tree_graph),
+        (linked_list_outline, linked_list_tree),
+        (tree_outline, tree_tree),
     ],
 )
-def test_outline(outline_lines, graph):
-    assert outline.graph_from_outline(outline_lines) == graph
+def test_outline(outline_lines, tree):
+    assert outline.tree_from_outline(outline_lines) == tree
 
 
 TAB = ' ' * 4
