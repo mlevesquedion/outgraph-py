@@ -30,7 +30,7 @@ a
    d
     e""".splitlines()
 linked_list_graph = {"a": ["b"], "b": ["c"], "c": ["d"], "d": ["e"]}
-linked_list_edges = [("a", "b"), ("b", "c"), ("c", "d"), ("d", "e")]
+linked_list_edges = from_outline.graph_to_edges(linked_list_graph)
 
 tree_outline = """\
 1
