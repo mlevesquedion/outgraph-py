@@ -58,7 +58,7 @@ tree_edges = outline.graph_to_edges(tree_graph)
     ],
 )
 def test_outline(outline_lines, graph):
-    assert outline.outline(outline_lines) == graph
+    assert outline.graph_from_outline(outline_lines) == graph
 
 
 TAB = ' ' * 4
