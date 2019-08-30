@@ -1,5 +1,5 @@
 from pytest import mark
-import from_outline
+import outline
 import graphviz
 
 
@@ -20,7 +20,7 @@ import graphviz
     ],
 )
 def test_graph_to_edges(graph, edges):
-    assert from_outline.graph_to_edges(graph) == edges
+    assert outline.graph_to_edges(graph) == edges
 
 
 linked_list_outline = """\
@@ -30,7 +30,7 @@ a
    d
     e""".splitlines()
 linked_list_graph = {"a": ["b"], "b": ["c"], "c": ["d"], "d": ["e"]}
-linked_list_edges = from_outline.graph_to_edges(linked_list_graph)
+linked_list_edges = outline.graph_to_edges(linked_list_graph)
 
 tree_outline = """\
 1
@@ -46,14 +46,7 @@ tree_graph = {
     "4": ["5"],
     "6": ["7"],
 }
-tree_edges = [
-    ("1", "2"),
-    ("1", "6"),
-    ("2", "3"),
-    ("2", "4"),
-    ("4", "5"),
-    ("6", "7"),
-]
+tree_edges = outline.graph_to_edges(tree_graph)
 
 
 @mark.parametrize(
@@ -64,8 +57,8 @@ tree_edges = [
         (tree_outline, tree_graph),
     ],
 )
-def test_from_outline(outline_lines, graph):
-    assert from_outline.from_outline(outline_lines) == graph
+def test_outline(outline_lines, graph):
+    assert outline.outline(outline_lines) == graph
 
 
 TAB = ' ' * 4
@@ -81,7 +74,7 @@ TAB = ' ' * 4
     ]
 )
 def test_line_regex(line, groups):
-    assert from_outline.line_re.match(line).groups() == groups
+    assert outline.line_re.match(line).groups() == groups
 
 
 @mark.parametrize(
@@ -93,4 +86,4 @@ def test_line_regex(line, groups):
     ]
 )
 def test_outline_to_edges(outline_lines, edges):
-    assert from_outline.outline_to_edges(outline_lines) == edges
+    assert outline.outline_to_edges(outline_lines) == edges

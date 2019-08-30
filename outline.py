@@ -14,7 +14,7 @@ def graph_to_edges(graph):
 line_re = re.compile(r'^(\s*)(.*)')
 
 
-def from_outline(outline_lines):
+def outline(outline_lines):
     """
     outline_lines: a list of strings representing an outline
     output: a graph constructed from the outline
@@ -43,4 +43,4 @@ def outline_to_edges(outline_lines):
     graph: a dict representing a graph's adjacency lists
     output: a list of the graph's edges as (src, dst) tuples
     """
-    return graph_to_edges(from_outline(outline_lines))
+    return graph_to_edges(outline(outline_lines))

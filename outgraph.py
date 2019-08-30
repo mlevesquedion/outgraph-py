@@ -2,7 +2,7 @@ import sys
 
 import graphviz
 
-import from_outline
+import outline
 
 
 def usage(script_name):
@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     with open(outline_file) as outline:
         lines = map(lambda s: s.rstrip(), outline.readlines())
-        edges = from_outline.outline_to_edges(lines)
+        edges = outline.outline_to_edges(lines)
         graphviz_file = outline_file.split('.')[0]
         dot = graphviz.Digraph(name=graphviz_file, format='pdf')
         dot.edges(edges)
