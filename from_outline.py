@@ -19,6 +19,7 @@ def from_outline(outline_lines):
     outline_lines: a list of strings representing an outline
     output: a graph constructed from the outline
     """
+    print(outline_lines)
     graph = collections.defaultdict(list)
     level_to_parent = {}
     for i, line in enumerate(outline_lines):
