@@ -73,7 +73,7 @@ TAB = ' ' * 4
     ]
 )
 def test_line_regex(line, groups):
-    assert outline.line_re.match(line).groups() == groups
+    assert outline.LINE_RE.match(line).groups() == groups
 
 
 @mark.parametrize(

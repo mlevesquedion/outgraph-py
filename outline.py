@@ -11,7 +11,7 @@ def tree_to_edges(tree):
             in children]
 
 
-line_re = re.compile(r'^(\s*)(.*)')
+LINE_RE = re.compile(r'^(\s*)(.*)')
 
 
 def tree_from_outline(outline_lines):
@@ -19,21 +19,19 @@ def tree_from_outline(outline_lines):
     outline_lines: a list of strings representing an outline
     output: a tree constructed from the outline
     """
-    print(outline_lines)
     tree = collections.defaultdict(list)
-    level_to_parent = {}
-    for i, line in enumerate(outline_lines):
-        if not line:
+    parent_at_depth = {}
+    for line in filter(bool, outline_lines):
+        indent, content = LINE_RE.fullmatch(line).groups()
+
+        depth = len(indent)
+        parent_at_depth[depth] = content
+
+        if depth == 0:
             continue
-        indent, content = line_re.fullmatch(line).groups()
-        if not content:
-            continue
-        current_indent = len(indent)
-        parent_indent = current_indent - 1
-        level_to_parent[current_indent] = content
-        if parent_indent not in level_to_parent:
-            continue
-        parent = level_to_parent[parent_indent]
+
+        parent_depth = depth - 1
+        parent = parent_at_depth[parent_depth]
         tree[parent].append(content)
     return dict(tree)
 
