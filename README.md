@@ -1,19 +1,19 @@
-# Outgraph
+# Outmind
 
-Produce a graph visualization from an outline.
+Produce a mind map from an outline.
 
 ## Usage
 ```
-python3 outgraph.py <outline_file>
+python3 outmind.py <outline_file>
 ```
 
 ## Recommended usage
 
 I created this tool because I was dissatisfied with the available options for creating mind maps. Specifically, all mind mapping software I've tried so far is lacking in the following ways :
-* Absent or poor automatic placement of nodes and edges
+* Absent or poor automatic placement of nodes and edges (doing it manually is a pain)
 * Editing the mind map is slow, usually due to absent or poor keyboard shortcuts
 
-My recommended worfklow is therefore to open an outline in Vim and to register a command that runs outgraph on file save. Open the resulting PDF using a viewer that has hot reloading capabilities, and voila. **Mind map at the speed of thought**.
+My recommended worfklow is therefore to open an outline in Vim and to register a command that runs outmind on file save. Open the resulting PDF using a viewer that has hot reloading capabilities, and voila. You can now **mind map at the speed of thought**.
 
 ## Outline format
 
@@ -33,14 +33,6 @@ Root
 #### Output
 ![Valid outline](valid_outline.png)
 
-### Invalid outline (two roots)
-```
-Root1
- Child
-Root2
- Child
-```
-
 ### Invalid outline (two spaces for indentation instead of 1)
 ```
 Root
@@ -49,7 +41,6 @@ Root
 
 ## Todo
 
-* Make the layout more mind-mappy (spread out instead of tree-like)
 * Allow labeled edges
   * Implementation idea : edges can be indicated by a colon, e.g. `is:ordered` would create an edge labeled "is" to a node labeled "ordered"
 * Relax requirement to have one-space indentation everywhere
