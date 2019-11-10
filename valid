@@ -1,0 +1,1 @@
+digraph outmind {"Root" -> "Child1"; "Label" [shape=plaintext]; "Child1" -> "Label" [arrowhead=none]; "Label" -> "Subchild11"; "Child1" -> "Subchild12"; "Root" -> "Child Two"; "Child Two" -> "Subchild21";}

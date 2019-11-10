@@ -24,14 +24,14 @@ The indentation is assumed to be a single space per level.
 ```
 Root
  Child1
-  Subchild11
+  Label: Subchild11
   Subchild12
  Child2
   Subchild21
 ```
 
 #### Output
-![Valid outline](valid_outline.png)
+![Valid outline](valid.png)
 
 ### Invalid outline (two spaces for indentation instead of 1)
 ```

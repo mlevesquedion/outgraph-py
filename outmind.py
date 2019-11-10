@@ -2,25 +2,24 @@ import sys
 
 import graphviz
 
-import outline
+import core
 
 
 def usage(script_name):
-    return f'Usage: {script_name} <outline_filename>'
+    return f"Usage: {script_name} <outline_filepath>"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         outline_filepath = sys.argv[1]
     except IndexError:
-        script_name = sys.argv[0]
-        print(usage(script_name), file=sys.stderr)
+        print(usage(sys.argv[0]), file=sys.stderr)
         sys.exit(1)
 
     with open(outline_filepath) as outline_file:
         lines = map(lambda s: s.rstrip(), outline_file.readlines())
-        edges = outline.outline_to_edges(lines)
-        graphviz_file = outline_filepath.split('.')[0]
-        dot = graphviz.Digraph(name=graphviz_file, format='pdf')
-        dot.edges(edges)
-        dot.render()
+        source = core.edges_to_dot(core.lines_to_edges(lines))
+        graphviz_file = outline_filepath.split(".")[0]
+        dot = graphviz.Source(source)
+        format = sys.argv[2] if len(sys.argv) > 2 else "pdf"
+        dot.render(graphviz_file, format=format)
